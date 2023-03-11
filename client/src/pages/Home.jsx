@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Loader, Card, FormField } from "../components/index";
 
 const RenderCards = ({ data, title }) => {
-  console.log(data);
   if (data?.length > 0) {
     return data.map((post) => <Card key={post._id} {...post} />);
   }
@@ -11,7 +10,6 @@ const RenderCards = ({ data, title }) => {
   );
 };
 const Home = () => {
-  console.log("home");
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState(null);
   const [searchText, setSearchText] = useState("");
@@ -19,7 +17,6 @@ const Home = () => {
   const [searchTimeout, setSearchTimeout] = useState(null);
 
   useEffect(() => {
-    console.log("useEffect");
     const fetchPosts = async () => {
       setLoading(true);
 
@@ -31,10 +28,8 @@ const Home = () => {
             headers: { "Content-Type": "application/json" },
           }
         );
-        console.log(response);
         if (response.ok) {
           const result = await response.json();
-          console.log(result);
           setPosts(result.data.reverse());
         }
       } catch (error) {
